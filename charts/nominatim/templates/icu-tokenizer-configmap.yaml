@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nominatim.fullname" . }}-tokenizer
+  namespace: {{ .Release.Namespace }}
+data:
+{{ (.Files.Glob "files/tokenizer.php").AsConfig | indent 2 }}

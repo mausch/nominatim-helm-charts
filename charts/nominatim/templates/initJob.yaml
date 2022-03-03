@@ -112,8 +112,8 @@ spec:
             {{- end }}
             - name: NOMINATIM_DATABASE_DSN
               value: {{ include "nominatim.databaseUrl" . }}
-            - name: NOMINATIM_DATABASE_MODULE_PATH
-              value: {{ .Values.nominatim.databaseModulePath }}
+            - name: NOMINATIM_TOKENIZER
+              value: icu
             {{- if .Values.flatnode.enabled }}
             - name: NOMINATIM_FLATNODE_FILE
               value: /nominatim/flatnode/flatnode.file
@@ -153,7 +153,7 @@ spec:
               name: flatnode
               subPath: flatnode
             {{- end }}
-      restartPolicy: OnFailure
+      restartPolicy: Never
       volumes:
         {{- if  .Values.flatnode.enabled }}
         - name: flatnode
