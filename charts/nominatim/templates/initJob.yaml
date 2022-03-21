@@ -122,6 +122,16 @@ spec:
               value: {{ .Values.nominatimReplications.enabled | quote }}
             - name: THREADS
               value: {{ .Values.nominatimInitialize.threads | quote }}
+            {{- if .Values.externalDatabase.enabled }}
+            - name: PGHOST
+              value: {{ .Values.externalDatabase.host | quote }}
+            - name: PGDATABASE
+              value: {{ .Values.externalDatabase.database | quote }}
+            - name: PGUSER
+              value: {{ .Values.externalDatabase.user | quote }}
+            - name: PGPASSWORD
+              value: {{ .Values.externalDatabase.password | quote }}
+            {{- end }}
           command:
             - /bin/bash
             - -ec
