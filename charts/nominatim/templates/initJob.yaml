@@ -103,6 +103,8 @@ spec:
             {{- end }}
             - name: NOMINATIM_DATABASE_DSN
               value: {{ include "nominatim.databaseUrl" . }}
+            - name: NOMINATIM_TOKENIZER
+              value: icu
             {{- if .Values.flatnode.enabled }}
             - name: NOMINATIM_FLATNODE_FILE
               value: /nominatim/flatnode/flatnode.file
